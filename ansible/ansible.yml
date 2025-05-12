@@ -1,0 +1,38 @@
+---
+- name: Configurar servidores web en Ubuntu 22.04
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Actualizar la caché de paquetes
+      apt:
+        update_cache: yes
+
+    - name: Instalar OpenSSH Server
+      apt:
+        name: openssh-server
+        state: present
+
+    - name: Instalar Apache2
+      apt:
+        name: apache2
+        state: present
+
+    - name: Instalar UFW
+      apt:
+        name: ufw
+        state: present
+
+    - name: Permitir tráfico SSH en el firewall
+      community.general.ufw:
+        rule: allow
+        name: OpenSSH
+
+    - name: Permitir tráfico HTTP en el firewall
+      community.general.ufw:
+        rule: allow
+        name: 'Apache Full'
+
+    - name: Habilitar UFW
+      community.general.ufw:
+        state: enabled
+        policy: deny

@@ -1,0 +1,9 @@
+name: cinc-auditor
+title: Perfil de Seguridad para SSH, Apache y UFW
+maintainer: Lucia
+license: Apache-2.0
+summary: Verifica la configuración de seguridad de SSH, Apache y UFW en Ubuntu 22.04
+version: 1.0.0
+supports:
+  - platform-name: ubuntu
+    release: 22.04
